@@ -231,7 +231,7 @@ smart-ecommerce-flipkart-clone/
 # **7\. Security & Deployment Architecture**
 
 * **Frontend Deployment (Vercel):** Connects to GitHub `/client` directory; stores `VITE_API_BASE_URL` and `VITE_RAZORPAY_KEY_ID` as environment variables.  
-* **Backend Deployment (Render):** Connects to GitHub `/server` directory; stores `MONGO_URI`, `JWT_SECRET`, `RAZORPAY_KEY_ID`, `RAZORPAY_KEY_SECRET`, and SMTP credentials securely in environment variables.  
+* **Backend Deployment (Render):** Connects to GitHub `/backend` directory; stores `MONGO_URI`, `JWT_SECRET`, `RAZORPAY_KEY_ID`, `RAZORPAY_KEY_SECRET`, and SMTP credentials securely in environment variables.  
 * **Database Hosting (MongoDB Atlas):** M0 Free Tier cluster with IP allowlisting / network access configured for Render and indexes created on `products.category`, `products.currentPrice`, and `users.email`.  
 * **Hardening Checklist:** Enable `helmet` for HTTP security headers, `express-rate-limit` on `/api/auth/*` routes, strict CORS restricted to the Vercel domain, and server-side price recalculation on all order requests.
 

@@ -71,10 +71,11 @@ Every standout feature in EKart was designed to remove real user friction:
 smart-ecommerce-flipkart-clone/
 ├── client/                     # React + Vite + Tailwind CSS
 │   ├── src/
-│   │   ├── components/         # Navbar, ProductCard, BudgetDimmer, CompareBar, PriceHistoryModal, UndoToast
-│   │   ├── pages/              # Home, ProductDetail, Cart, Checkout, Login, AdminDashboard
+│   │   ├── components/         # Navbar, CategoryStrip, HeroBanner, ProductCard, BudgetDimmer, CompareBar, CompareModal, PriceHistoryModal, PriceBreakdown, UndoToast
+│   │   ├── pages/              # Home, ProductDetail, Cart, Checkout, OrderSuccess, Login, Register, AdminDashboard, NotFound
 │   │   ├── context/            # AuthContext, CartContext, CompareContext
-│   │   ├── services/           # api.js (Axios instance with JWT interceptor)
+│   │   ├── data/               # mockProducts.js (20 products with price histories)
+│   │   ├── services/           # api.js (Axios, JWT interceptor, API + local fallback)
 │   │   └── App.jsx
 │   └── package.json
 └── backend/                     # Node.js + Express + Mongoose
@@ -174,9 +175,10 @@ Open a new terminal window:
 ```bash
 cd client
 npm install
+cp .env.example .env
 ```
 
-Create a `.env` file inside `client/`:
+Update `client/.env` if your backend or Razorpay test key differs:
 ```env
 VITE_API_BASE_URL=http://localhost:5000/api
 VITE_RAZORPAY_KEY_ID=rzp_test_xxxxxxxxxx
@@ -188,6 +190,8 @@ npm run dev
 ```
 
 Visit **`http://localhost:5173`** in your browser.
+
+The client also runs fully without the backend: if the API is unreachable, it uses the built-in 20-product catalog, local cart, local admin edits, local price alerts, and simulated Razorpay Test Mode checkout. Run `npm run build` to verify the production bundle.
 
 ---
 
@@ -205,7 +209,7 @@ Visit **`http://localhost:5173`** in your browser.
 ## 🌐 Deployment
 
 * **Frontend:** Deploy the `/client` folder on **Vercel** (`VITE_API_BASE_URL`, `VITE_RAZORPAY_KEY_ID`).
-* **Backend:** Deploy the `/server` folder on **Render** (configure all server `.env` variables and set `CLIENT_URL` to your Vercel URL).
+* **Backend:** Deploy the `/backend` folder on **Render** (configure all backend `.env` variables and set `CLIENT_URL` to your Vercel URL).
 * **Database:** Hosted on **MongoDB Atlas** (Free Tier).
 
 ---
